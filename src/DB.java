@@ -106,4 +106,19 @@ public class DB {
         } catch (Exception e) { e.printStackTrace(); }
         return rs;
     }
+      
+      public boolean isTCExists(String tc)
+      {
+          String sql = "select count(*) as 'cnt' from Müsteriler where tc = '"+tc+"'";
+          System.out.println(sql);
+          boolean isExists = false;
+          try
+          {
+              ResultSet rs = conn.createStatement().executeQuery(sql);
+              rs.next();
+              isExists = rs.getInt(1) == 1;
+             
+          } catch (Exception e) { e.printStackTrace(); }
+          return isExists;
+      }
 }

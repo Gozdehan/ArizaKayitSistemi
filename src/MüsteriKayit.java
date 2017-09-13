@@ -1,4 +1,5 @@
 
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -6,9 +7,18 @@ import javax.swing.JOptionPane;
 
 public class MüsteriKayit extends javax.swing.JFrame {
 
+    DB db;
+    
     public MüsteriKayit() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        
+        try {
+            db = new DB();
+        } catch (Exception ex) {
+            Logger.getLogger(MüsteriKayit.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +42,7 @@ public class MüsteriKayit extends javax.swing.JFrame {
         txtTarih = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtTel = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,37 +75,47 @@ public class MüsteriKayit extends javax.swing.JFrame {
 
         jLabel6.setText("Telefon:");
 
+        jButton2.setText("VAZGEÇ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtAd, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSoyad, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTC, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMail, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                            .addComponent(txtTarih, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTel, javax.swing.GroupLayout.Alignment.LEADING))))
-                .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(103, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtAd, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSoyad, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTC, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMail, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                    .addComponent(txtTarih, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTel, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +151,9 @@ public class MüsteriKayit extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtTarih, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -139,7 +162,7 @@ public class MüsteriKayit extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            DB db = new DB();
+           
             String tc = txtTC.getText();
             String ad = txtAd.getText();
             String soyad = txtSoyad.getText();
@@ -148,17 +171,37 @@ public class MüsteriKayit extends javax.swing.JFrame {
             String adres = taAdres.getText();
             String kayitTarihi = txtTarih.getText();
             
+            
+            boolean isTCErr = db.isTCExists(tc);
+            
+            if (isTCErr)
+            {
+                 JOptionPane.showMessageDialog(rootPane, "Bu Müşteri Zaten Kayıtlı!", "INFO", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if (tc.equals("") || ad.equals("") || soyad.equals("") || email.equals("") || telefon.equals("") || adres.equals("") || kayitTarihi.equals("")){
+                JOptionPane.showMessageDialog(rootPane, "Boş Alanları Doldurunuz!","UYARI", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
             String sql  = "insert into Müsteriler (tc, ad, soyad, email, telefon, adres, kayitTarihi) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')";
             sql = String.format(sql, tc, ad, soyad, email, telefon, adres,kayitTarihi);
             db.qWNR(sql);
+            JOptionPane.showMessageDialog(rootPane, "Kayıt Başarılı", "Info", JOptionPane.INFORMATION_MESSAGE);
+            MüsteriIslemleri mi = new MüsteriIslemleri();
+            mi.setVisible(true);
+            dispose();
+            }
+     
         } catch (Exception ex) {
             Logger.getLogger(MüsteriKayit.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JOptionPane.showMessageDialog(rootPane, "Kayıt Başarılı", "Info", JOptionPane.INFORMATION_MESSAGE);
-        MüsteriIslemleri ak = new MüsteriIslemleri();
-        ak.setVisible(true);
-        dispose();
+        }   
+       
+                
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,6 +241,7 @@ public class MüsteriKayit extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

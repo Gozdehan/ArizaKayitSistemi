@@ -202,9 +202,8 @@ public class TeknikServis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DB db;
-        try {
-            db = new DB();
+   
+        try {        
             int value = tbTeknikServis.getSelectedRow();
             String mTc = ""+tbTeknikServis.getValueAt(value, 0);
             String mSikayet= ""+tbTeknikServis.getValueAt(value, 1);
@@ -223,13 +222,12 @@ public class TeknikServis extends javax.swing.JFrame {
             Logger.getLogger(TeknikServis.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        ArizaDurumKayit adk = new ArizaDurumKayit();
-        adk.setVisible(true);
-        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(0);
+        AnaSayfa as = new AnaSayfa();
+        as.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tbTeknikServisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTeknikServisMouseClicked

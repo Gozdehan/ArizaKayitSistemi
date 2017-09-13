@@ -57,6 +57,8 @@ public class MüsteriIslemleri extends javax.swing.JFrame {
         btnSil = new javax.swing.JButton();
         btnGüncelle = new javax.swing.JButton();
         btnAriza = new javax.swing.JButton();
+        btnRapor = new javax.swing.JButton();
+        btnAnaSayfa1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,7 +80,7 @@ public class MüsteriIslemleri extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbKayit);
 
-        btnEkle.setText("YENİ MÜŞTERİ EKLE");
+        btnEkle.setText("YENİ KAYIT EKLE");
         btnEkle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEkleActionPerformed(evt);
@@ -106,6 +108,20 @@ public class MüsteriIslemleri extends javax.swing.JFrame {
             }
         });
 
+        btnRapor.setText("TEKNİK SERVİS RAPORU");
+        btnRapor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaporActionPerformed(evt);
+            }
+        });
+
+        btnAnaSayfa1.setText("ANA SAYFAYA DÖN");
+        btnAnaSayfa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnaSayfa1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,13 +131,17 @@ public class MüsteriIslemleri extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEkle, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(btnSil, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnGüncelle, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(btnAriza, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEkle, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSil, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGüncelle, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAriza, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRapor, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAnaSayfa1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -130,11 +150,14 @@ public class MüsteriIslemleri extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnEkle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAriza, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(btnSil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGüncelle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnEkle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAriza, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAnaSayfa1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGüncelle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRapor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -151,7 +174,6 @@ public class MüsteriIslemleri extends javax.swing.JFrame {
     private void btnSilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSilActionPerformed
         try {
             JOptionPane.showMessageDialog(rootPane, "Kaydı Silmek İstediğinizden Emin misiniz?");
-            DB db = new DB();
             int value = tbKayit.getSelectedRow();
             String tc = tbKayit.getValueAt(value, 0).toString();
             
@@ -181,8 +203,26 @@ public class MüsteriIslemleri extends javax.swing.JFrame {
 
     private void btnGüncelleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGüncelleActionPerformed
 
-        // TODO add your handling code here:
+            int value = tbKayit.getSelectedRow();
+            String mTc = "" + tbKayit.getValueAt(value, 0);
+            String mAd = "" + tbKayit.getValueAt(value, 1);
+            String mSoyad = "" + tbKayit.getValueAt(value, 2);
+            
+            KayitGuncelle kg = new KayitGuncelle(mTc,mAd,mSoyad);
+            kg.setVisible(true);     
+    
     }//GEN-LAST:event_btnGüncelleActionPerformed
+
+    private void btnRaporActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaporActionPerformed
+        TeknikRapor tr = new TeknikRapor();
+        tr.setVisible(true);
+    }//GEN-LAST:event_btnRaporActionPerformed
+
+    private void btnAnaSayfa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnaSayfa1ActionPerformed
+       AnaSayfa as = new AnaSayfa();
+       as.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_btnAnaSayfa1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,9 +263,11 @@ public class MüsteriIslemleri extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnaSayfa1;
     private javax.swing.JButton btnAriza;
     private javax.swing.JButton btnEkle;
     private javax.swing.JButton btnGüncelle;
+    private javax.swing.JButton btnRapor;
     private javax.swing.JButton btnSil;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbKayit;

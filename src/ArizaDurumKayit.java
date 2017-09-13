@@ -8,21 +8,27 @@ import javax.swing.table.DefaultTableModel;
 
 public class ArizaDurumKayit extends javax.swing.JFrame {
 
-    DefaultTableModel dtm;
+   // DefaultTableModel dtm;
     DB db;
  
     public ArizaDurumKayit() {
         initComponents();
         setLocationRelativeTo(null);
         
-        dtm = (DefaultTableModel)tbArizaDurum.getModel();
-        refreshTable();
+        //dtm = (DefaultTableModel)tbArizaDurum.getModel();
+        //refreshTable();
     
     }
 
     String tcNo, a;
   public ArizaDurumKayit(String tcNo, String a) {
         initComponents();
+        
+        try {
+            db = new DB();
+        } catch (Exception ex) {
+            Logger.getLogger(ArizaDurumKayit.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         this.tcNo = tcNo;
         this. a = a;
@@ -33,7 +39,7 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
        // taSikayet.setText(b);  
     }
   
-   void refreshTable()
+  /* void refreshTable()
     {
         dtm.setRowCount(0);
         try
@@ -56,7 +62,7 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
             }
         } catch (Exception e) { e.printStackTrace(); }
         
-    }
+    }*/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,13 +83,9 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtSikayetTarihi = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbArizaDurum = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         cbOnay = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,28 +114,6 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
             }
         });
 
-        tbArizaDurum.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "TC", "Garanti Durumu", "Cihaz Tamir Süresi", "Cihaz Teslim Tarihi", "Maliyet"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tbArizaDurum);
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Teknik Servisten Gelen Bilgiler");
-
         jLabel9.setText("Müşteri Onayı Alındı Mı:");
 
         cbOnay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EVET", "HAYIR", "BEKLEMEDE", " " }));
@@ -145,19 +125,12 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("ÇIKIŞ");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,43 +146,27 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
                                     .addComponent(jLabel1)))
                             .addComponent(jLabel9))
                         .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbOnay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtSikayetTarihi, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtTC, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtAd, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                             .addComponent(txtMarka, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtModel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtSeriNo, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSeriNo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtTC, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAd)
+                            .addComponent(jScrollPane1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 128, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(172, 172, 172))))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -246,11 +203,7 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -260,7 +213,6 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
-            DB db = new DB();
             String tc = txtTC.getText();
             String ad = txtAd.getText();
             String sikayet = taSikayet.getText();
@@ -279,9 +231,6 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(ArizaDurumKayit.class.getName()).log(Level.SEVERE, null, ex);
         }
-        TeknikServis ts = new TeknikServis();
-        ts.setVisible(true);
-        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -289,10 +238,6 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
        mi.setVisible(true);
        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,7 +279,6 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbOnay;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -342,12 +286,9 @@ public class ArizaDurumKayit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea taSikayet;
-    private javax.swing.JTable tbArizaDurum;
     private javax.swing.JTextField txtAd;
     private javax.swing.JTextField txtMarka;
     private javax.swing.JTextField txtModel;
